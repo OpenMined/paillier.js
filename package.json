@@ -1,10 +1,10 @@
 {
   "name": "paillier-pure",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "No-dependency version of paillier-bigint",
   "scripts": {
     "test": "jest",
-    "prepublish": "tsc"
+    "prepare": "tsc"
   },
   "author": "kevmo314@gmail.com",
   "license": "MIT",
