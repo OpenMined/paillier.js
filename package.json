@@ -1,10 +1,14 @@
 {
   "name": "paillier-pure",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "No-dependency version of paillier-bigint",
   "scripts": {
     "test": "jest",
     "prepare": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevmo314/paillier-pure.git"
   },
   "author": "kevmo314@gmail.com",
   "license": "MIT",
