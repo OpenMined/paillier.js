@@ -1,7 +1,7 @@
 import BigInteger from "big-integer";
 
 function getRandomValues(buf: Uint8Array) {
-  if (window?.crypto?.getRandomValues) {
+  if (typeof window !== "undefined") {
     window.crypto.getRandomValues(buf);
   } else {
     require("crypto").randomFillSync(buf);
