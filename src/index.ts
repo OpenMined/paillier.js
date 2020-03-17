@@ -42,6 +42,20 @@ export function generateRandomKeys(bitLength = 3072, simpleVariant = false) {
   return { publicKey, privateKey };
 }
 
+function toBigInteger(num: BigInteger.BigNumber) {
+  // ts compiler doesn't seem to like this very much...
+  if (typeof num == "number") {
+    return BigInteger(num);
+  }
+  if (typeof num == "string") {
+    return BigInteger(num);
+  }
+  if (typeof num == "bigint") {
+    return BigInteger(num);
+  }
+  return num;
+}
+
 /**
  * Class for a Paillier public key
  */
@@ -67,7 +81,7 @@ export class PublicKey {
   /**
    * Paillier public-key encryption
    */
-  encrypt(m: BigInteger.BigInteger) {
+  encrypt(m: BigInteger.BigNumber) {
     return this.g
       .modPow(m, this.n2)
       .times(random.randBetween(this.n).modPow(this.n, this.n2))
@@ -77,10 +91,10 @@ export class PublicKey {
   /**
    * Homomorphic addition
    */
-  addition(...ciphertexts: BigInteger.BigInteger[]) {
+  addition(...ciphertexts: BigInteger.BigNumber[]) {
     // ciphertexts of numbers
     return ciphertexts.reduce(
-      (sum, next) => sum.times(next).mod(this.n2),
+      (sum: BigInteger.BigInteger, next) => sum.times(next).mod(this.n2),
       BigInteger.one
     );
   }
@@ -88,9 +102,9 @@ export class PublicKey {
   /**
    * Pseudo-homomorphic Paillier multiplication
    */
-  multiply(c: BigInteger.BigInteger, k: BigInteger.BigInteger) {
+  multiply(c: BigInteger.BigNumber, k: BigInteger.BigNumber) {
     // c is ciphertext. k is either a cleartext message (number) or a scalar
-    return c.modPow(k, this.n2);
+    return toBigInteger(c).modPow(k, this.n2);
   }
 }
 
@@ -126,8 +140,11 @@ export class PrivateKey {
   /**
    * Paillier private-key decryption
    */
-  decrypt(c: BigInteger.BigInteger) {
-    return L(c.modPow(this.lambda, this.publicKey.n2), this.publicKey.n)
+  decrypt(c: BigInteger.BigNumber) {
+    return L(
+      toBigInteger(c).modPow(this.lambda, this.publicKey.n2),
+      this.publicKey.n
+    )
       .times(this.mu)
       .mod(this.publicKey.n);
   }
