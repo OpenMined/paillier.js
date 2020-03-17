@@ -1,9 +1,10 @@
 {
   "include": ["src/**/*"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
+    "module": "es6",
     "esModuleInterop": true,
-    "moduleResolution": "node",
     "outDir": "dist",
     "declaration": true
   }

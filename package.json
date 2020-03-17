@@ -1,6 +1,6 @@
 {
   "name": "paillier-pure",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "No-dependency version of paillier-bigint",
   "scripts": {
     "test": "jest",
@@ -15,6 +15,9 @@
   "dependencies": {
     "big-integer": "^1.6.48"
   },
+  "files": [
+    "dist"
+  ],
   "types": "index.d.ts",
   "module": "dist/index.es.js",
   "main": "dist/index.js",
