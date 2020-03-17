@@ -23,9 +23,6 @@
   "main": "dist/index.js",
   "jest": {
     "preset": "ts-jest",
-    "setupFiles": [
-      "<rootDir>/setupCrypto.ts"
-    ],
     "testEnvironment": "jsdom"
   },
   "devDependencies": {

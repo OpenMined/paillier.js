@@ -1,3 +1,4 @@
+import BigInteger from "big-integer";
 import "jest";
 import * as random from "./random";
 
@@ -8,4 +9,12 @@ test.each([256, 512, 1024, 2048, 3072, 4096])("prime", bitLength => {
       .bitLength()
       .toJSNumber()
   ).toEqual(bitLength);
+});
+
+test("randBetween", () => {
+  const x = random.randBetween(BigInteger(1000000));
+  const y = random.randBetween(BigInteger(1000000));
+  expect(x).not.toEqual(y);
+  expect(x).toBeLessThan(1000000);
+  expect(y).toBeLessThan(1000000);
 });

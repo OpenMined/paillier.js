@@ -1,5 +1,13 @@
 import BigInteger from "big-integer";
 
+function getRandomValues(buf: Uint8Array) {
+  if (window?.crypto?.getRandomValues) {
+    window.crypto.getRandomValues(buf);
+  } else {
+    require("crypto").randomFillSync(buf);
+  }
+}
+
 /**
  * A probably-prime (Miller-Rabin), cryptographically-secure, random-number generator.
  */
@@ -43,7 +51,7 @@ function randBytes(byteLength: number, forceLength = false) {
     throw new RangeError(`byteLength MUST be > 0 and it is ${byteLength}`);
 
   const buf = new Uint8Array(byteLength);
-  self.crypto.getRandomValues(buf);
+  getRandomValues(buf);
   // If fixed length is required we put the first bit to 1 -> to get the necessary bitLength
   if (forceLength) buf[0] = buf[0] | 128;
   return buf;
