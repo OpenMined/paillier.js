@@ -1,6 +1,6 @@
 {
   "name": "paillier-pure",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "No-dependency version of paillier-bigint",
   "scripts": {
     "test": "jest",
