@@ -12,8 +12,8 @@ test.each([256, 512, 1024, 2048, 3072, 4096])("prime", bitLength => {
 });
 
 test("randBetween", () => {
-  const x = random.randBetween(BigInteger(1000000));
-  const y = random.randBetween(BigInteger(1000000));
+  const x = random.randBetween(BigInteger(1000000)).toJSNumber();
+  const y = random.randBetween(BigInteger(1000000)).toJSNumber();
   expect(x).not.toEqual(y);
   expect(x).toBeLessThan(1000000);
   expect(y).toBeLessThan(1000000);

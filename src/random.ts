@@ -1,7 +1,7 @@
 import BigInteger from "big-integer";
 
 function getRandomValues(buf: Uint8Array) {
-  if (typeof self !== "undefined") {
+  if (typeof self !== "undefined" && typeof self.crypto !== "undefined") {
     // Works for both browser (window) and React Native (global).
     self.crypto.getRandomValues(buf);
   } else {
