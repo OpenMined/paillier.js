@@ -4,7 +4,7 @@
   "description": "No-dependency version of paillier-bigint",
   "scripts": {
     "test": "jest src",
-    "prebuild": "rm -rf build/",
+    "prebuild": "rm -rf dist/",
     "build": "rollup -c"
   },
   "repository": {
