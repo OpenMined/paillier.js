@@ -106,12 +106,12 @@ export class PublicKey {
     // Insecure naive multiplication: c^0 % n^2 === 1
     // Ensures we return an encrypted 0
     if (k.toString() === '0') {
-      return this.encrypt(toBigInteger(0));
+      return this.encrypt(BigInteger.zero);
     }
     // // Insecure naive multiplication: c^1 % n^2 === c
     // // Ensures we return a different encrypted c
     if (k.toString() === '1') {
-      const encryptedZero = this.encrypt(toBigInteger(0));
+      const encryptedZero = this.encrypt(BigInteger.zero);
       return this.addition(toBigInteger(c), encryptedZero);
     }
     
