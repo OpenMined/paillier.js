@@ -3,20 +3,20 @@ import "jest";
 import * as paillierBigint from "./index";
 
 describe('Paillier', () => {
-  test('should return a cipher when multiplied by a plain 0', () => {
+  test('should return a zero cipher when multiplied by a plain 0', () => {
     const keyPair = paillierBigint.generateRandomKeys(1024);
     const number = BigInteger(10)
     const cipher = keyPair.publicKey.encrypt(number);
-    const encMul = keyPair.publicKey.multiply(cipher, 0);
-    expect(encMul).not.toEqual(BigInteger(1))
+    const encMul = keyPair.publicKey.multiply(cipher, BigInteger.zero);
+    expect(encMul).not.toEqual(BigInteger.one)
     const d = keyPair.privateKey.decrypt(encMul);
-    expect(d).toEqual(BigInteger(0));
+    expect(d).toEqual(BigInteger.zero);
   })
-  test('should return a different cipher when multiplied by a plain 1', () => {
+  test('should return a refreshed cipher when multiplied by a plain 1', () => {
     const keyPair = paillierBigint.generateRandomKeys(1024);
     const number = BigInteger(10)
     const cipher = keyPair.publicKey.encrypt(number);
-    const encMul = keyPair.publicKey.multiply(cipher, 1);
+    const encMul = keyPair.publicKey.multiply(cipher, BigInteger.one);
     expect(encMul).not.toEqual(cipher)
     const d = keyPair.privateKey.decrypt(encMul);
     expect(d).toEqual(number);
