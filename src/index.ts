@@ -104,9 +104,9 @@ export class PublicKey {
    */
   multiply(c: BigInteger.BigNumber, k: BigInteger.BigNumber): BigInteger.BigNumber {
     // Insecure naive multiplication: c^0 % n^2 === 1
-    // Ensures we return an encrypted 1
+    // Ensures we return an encrypted 0
     if (k.toString() === '0') {
-      return this.encrypt(BigInteger.one);
+      return this.encrypt(BigInteger.zero);
     }
     // // Insecure naive multiplication: c^1 % n^2 === c
     // // Ensures we return a refreshed encrypted c
