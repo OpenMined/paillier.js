@@ -12,7 +12,7 @@ describe('Random', () => {
     ).toEqual(bitLength);
   });
   
-  test('randBetwee', () => {
+  test('randBetween', () => {
     const x = random.randBetween(BigInteger(1000000)).toJSNumber();
     const y = random.randBetween(BigInteger(1000000)).toJSNumber();
     expect(x).not.toEqual(y);
