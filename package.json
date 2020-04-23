@@ -3,8 +3,9 @@
   "version": "1.0.13",
   "description": "No-dependency version of paillier-bigint",
   "scripts": {
-    "test": "jest",
-    "prepare": "rollup -c"
+    "test": "jest src",
+    "prebuild": "rm -rf dist/",
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",

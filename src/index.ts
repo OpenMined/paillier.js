@@ -102,7 +102,19 @@ export class PublicKey {
   /**
    * Pseudo-homomorphic Paillier multiplication
    */
-  multiply(c: BigInteger.BigNumber, k: BigInteger.BigNumber) {
+  multiply(c: BigInteger.BigNumber, k: BigInteger.BigNumber): BigInteger.BigNumber {
+    // Insecure naive multiplication: c^0 % n^2 === 1
+    // Ensures we return an encrypted 0
+    if (k.toString() === '0') {
+      return this.encrypt(BigInteger.zero);
+    }
+    // // Insecure naive multiplication: c^1 % n^2 === c
+    // // Ensures we return a refreshed encrypted c
+    if (k.toString() === '1') {
+      const encryptedZero = this.encrypt(BigInteger.zero);
+      return this.addition(toBigInteger(c), encryptedZero);
+    }
+    
     // c is ciphertext. k is either a cleartext message (number) or a scalar
     return toBigInteger(c).modPow(k, this.n2);
   }
