@@ -1,4 +1,4 @@
-# paillier-pure
+# paillier.js
 
 This is a pure JS implementation of [paillier-bigint](https://github.com/juanelas/paillier-bigint). This version has no dependencies on `bigint` or `worker`, making it suitable for use in React Native or other constrained environments.
 
